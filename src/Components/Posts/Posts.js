@@ -4,10 +4,16 @@ import {collection, getDocs} from "firebase/firestore"
 import Heart from '../../assets/Heart';
 import './Post.css';
 import {FirebaseContext} from "../../store/FirebaseContext";
+import {ProductContext} from "../../store/ProductContext";
+import {useNavigate} from "react-router-dom";
 
 function Posts() {
     const [posts, setPosts] = useState([]);
     const {firestore} = useContext(FirebaseContext);
+
+    const navigator = useNavigate();
+
+    const {setProduct} = useContext(ProductContext);
 
     useEffect(() => {
         getDocs(
@@ -37,6 +43,10 @@ function Posts() {
                         posts.map((product) => {
                             return (<div
                                 className="card"
+                                onClick={() => {
+                                    setProduct(product);
+                                    navigator('/view/');
+                                }}
                             >
                                 <div className="favorite">
                                     <Heart></Heart>

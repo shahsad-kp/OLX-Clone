@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef} from 'react';
 import {updateProfile} from 'firebase/auth';
-import { collection, addDoc } from "firebase/firestore";
+import {doc, setDoc} from "firebase/firestore";
 
 import Logo from '../../olx-logo.png';
 import './Signup.css';
@@ -35,11 +35,10 @@ export default function Signup() {
             .then((userCredential) => {
                 updateProfile(auth.currentUser, {displayName: username}).then(() => {
                     const data = {
-                        id: auth.currentUser.uid,
                         username: username,
                         phone: phone
                     }
-                    addDoc(collection(firestore, "users"), data).then(
+                    setDoc(doc(firestore, "users", auth.currentUser.uid), data).then(
                         r => navigator('/login/')
                     ).catch(
                         (reason) => alert(reason.message)
