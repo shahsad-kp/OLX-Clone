@@ -57,7 +57,7 @@ function Header() {
                     <hr/>
                 </div>
                 {user && <span onClick={signOutUser}>Logout</span>}
-                <div className="sellMenu">
+                <div className="sellMenu" onClick={() => navigator('/create/')}>
                     <SellButton></SellButton>
                     <div className="sellMenuContent">
                         <SellButtonPlus></SellButtonPlus>
