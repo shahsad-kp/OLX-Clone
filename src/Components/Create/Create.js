@@ -20,17 +20,18 @@ const Create = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const reference = ref(storage, `/images/${image.name}`)
-        uploadBytes(reference, image).then((snapshot) => {
+        uploadBytes(reference, image).then(() => {
             getDownloadURL(reference).then((url) => {
                 const data = {
                     name: nameRef.current.value,
                     category: categoryRef.current.value,
                     price: priceRef.current.value,
                     image: url,
-                    ownerId: user.uid
+                    ownerId: user.uid,
+                    createdAt: new Date().toDateString()
                 }
                 addDoc(collection(firestore, "products"), data).then(
-                    r => {
+                    () => {
                         alert('Product added..')
                         navigator('/')
                     }
