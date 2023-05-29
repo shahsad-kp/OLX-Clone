@@ -35,15 +35,13 @@
 }
 
 .productSearch {
-    width: 35em;
+    width: 32em;
     height: 48px;
     border: 2px solid #002f34;
     border-radius: 4px;
     display: flex;
     align-items: center;
     background-color: white;
-    display: flex;
-    align-items: center;
     justify-content: space-between;
 }
 
